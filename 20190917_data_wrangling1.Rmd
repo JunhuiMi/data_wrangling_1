@@ -1,0 +1,38 @@
+---
+title: "Data Wrangling 1"
+author: "Junhui Mi"
+date: "2019/9/17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(readxl)
+library(haven)
+```
+
+## Load in a dataset from CSV
+
+```{r}
+## reads in a dataset
+litters_data = read_csv("FAS_litters.csv")
+litters_data = janitor::clean_names(litters_data)
+pups_data = read_csv("FAS_pups.csv")
+pups_data = janitor::clean_names(pups_data)
+skimr::skim(pups_data)
+write_csv(pups_data, path = "FAS_pups.csv")
+```
+
+## Read from Excel
+```{r excel}
+## reads in a dataset from excel
+mlb11_data = read_excel("mlb11.xlsx", range = "A1:D7")
+```
+
+## Read from SAS
+```{r SAS}
+## reads in a dataset from SAS
+pulse_data = read_sas("public_pulse_data.sas7bdat")
+```
